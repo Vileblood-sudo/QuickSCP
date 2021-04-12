@@ -21,7 +21,7 @@ echo
 echo "Checking if SSH is open..."
 echo
 exec 3>/dev/tcp/${ipInput}/${portInput} > /dev/null 2>&1
-if [ $? -eq 1 ]; then
+if [ $? -eq 0 ]; then
     echo
     echo "SSH is Open!"
     sleep $DELAY
