@@ -69,7 +69,7 @@ EOF
         fi
         if [[ "$REPLY" =~ ^[3]$ ]]; then
             clear
-            ./qscp.sh
+            ./$(basename $0) && exit
         fi
         else
             echo "Input Error. Please try again.."
