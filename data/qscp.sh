@@ -20,18 +20,18 @@ read -p "Please input the port:  " portInput
 echo
 echo "Checking if SSH is open..."
 echo
-#exec 3>/dev/tcp/${ipInput}/${portInput} > /dev/null 2>&1
-#if [ $? -eq 1 ]; then
-#    echo
-#    echo "SSH is Open!"
-#    sleep $DELAY
-#else
-#    echo
-#    echo "SSH is Closed!"
-#    sleep $DELAY
-#    clear
-#    ./qscp.sh
-#fi
+exec 3>/dev/tcp/${ipInput}/${portInput} > /dev/null 2>&1
+if [ $? -eq 1 ]; then
+    echo
+    echo "SSH is Open!"
+    sleep $DELAY
+else
+    echo
+    echo "SSH is Closed!"
+    sleep $DELAY
+    clear
+    ./qscp.sh
+fi
 
 while [[ "$REPLY" != 0 ]]; do
 	clear
