@@ -30,7 +30,7 @@ else
     echo "SSH is Closed!"
     sleep $DELAY
     clear
-    ./qscp.sh
+    ./$(basename $0) && exit
 fi
 
 while [[ "$REPLY" != 0 ]]; do
