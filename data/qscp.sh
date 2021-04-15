@@ -77,10 +77,10 @@ Please select from the following options:
 	
 EOF
   
-	read -p "Enter your selection [1-6]> "
+	read -p "Enter your selection [1-7]> "
 
 
-    if [[ "$REPLY" =~ ^[1-6]$ ]]; then
+    if [[ "$REPLY" =~ ^[1-7]$ ]]; then
         if [[ "$REPLY" =~ ^[1]$ ]]; then
             clear
             displayTarget
