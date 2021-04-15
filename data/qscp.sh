@@ -62,7 +62,7 @@ displayTarget () {
     echo "Target Port - $portInput"
 }
 
-id idVar
+whoami idVar
 while [[ "$REPLY" != 0 ]]; do
     clear
 	cat <<EOF
