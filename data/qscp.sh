@@ -89,9 +89,8 @@ EOF
             read -p "Please input the path to file:  " filePath
             read -p "Please input the destination path:  " destinationPath
             echo
-            scp -P $portInput $filePath $usernameInput@$ipInput:$destinationPath >> ~/QSCP.log
+            scp -P $portInput $filePath $usernameInput@$ipInput:$destinationPath
             echo
-            echo "Output sent to home directory (QSCP.log)"
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[2]$ ]]; then
@@ -103,9 +102,8 @@ EOF
             read -p "Please input the path to file:" filePath
             read -p "Please input the destination path:  " destinationPath
             echo
-            scp -P $portInput $usernameInput@$ipInput:$filePath $destinationPath >> ~/QSCP.log
+            scp -P $portInput $usernameInput@$ipInput:$filePath $destinationPath
             echo
-            echo "Output sent to home directory (QSCP.log)"
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[3]$ ]]; then
