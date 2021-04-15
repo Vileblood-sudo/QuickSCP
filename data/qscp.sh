@@ -121,7 +121,7 @@ EOF
             displayTarget
             echo
             read -p "Please enter the command you wish to execute:  " cInput
-            ssh $usernameInput@$ipInput -p $portInput $cInput >> /home/$idVar/QSCPexecute.log
+            ssh $usernameInput@$ipInput -p $portInput $cInput >> ~/QSCPexecute.log
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[6]$ ]]; then
