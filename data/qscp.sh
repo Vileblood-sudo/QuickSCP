@@ -47,7 +47,7 @@ while [[ "$REPLY" != 0 ]]; do
 	
 EOF
   
-	read -p "Enter your selection [1-5]> "
+	read -p "Enter your selection [1-4]> "
 
 
 	if [[ "$REPLY" =~ ^[1-4]$ ]]; then
