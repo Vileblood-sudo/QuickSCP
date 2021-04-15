@@ -18,7 +18,6 @@ read -p "Please input the username:  " usernameInput
 read -p "Please input the port:  " portInput
 
 
-
 while [[ "$REPLY" != 0 ]]; do
 	clear
 	cat <<EOF
