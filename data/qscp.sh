@@ -65,14 +65,15 @@ while [[ "$REPLY" != 0 ]]; do
     clear
 	cat <<EOF
 
-	Please select from the following options:
+Please select from the following options:
 
-    1.) Copy a file to a remote system
-    2.) Copy a file from a remote system
-    3.) Change server data
-    4.) Remote into server
+    1.) Copy a file to a target
+    2.) Copy a file from a target
+    3.) Change target information
+    4.) Remote into target
     5.) Execute remote command
-    6.) Show help 
+    6.) Show help
+    7.) Quit 
 	
 EOF
   
@@ -84,7 +85,7 @@ EOF
             clear
             displayTarget
             echo
-            echo "You have selected to copy a file to a remote system"
+            echo "You have selected to copy a file to a target"
             echo
             read -p "Please input the path to file:  " filePath
             read -p "Please input the destination path:  " destinationPath
@@ -97,7 +98,7 @@ EOF
             clear
             displayTarget
             echo
-            echo "You have selected to copy a file from a remote system"
+            echo "You have selected to copy a file from a target"
             echo
             read -p "Please input the path to file:" filePath
             read -p "Please input the destination path:  " destinationPath
@@ -119,9 +120,9 @@ EOF
             displayTarget
             echo
             read -p "Please enter the command you wish to execute:  " cInput
-            ssh $usernameInput@$ipInput -p $portInput $cInput >> ~/QSCPexecute.log
+            ssh $usernameInput@$ipInput -p $portInput $cInput >> ~/QSCP.log
             echo
-            echo "Output sent to home directory (QSCPexecute.log)"
+            echo "Output sent to home directory (QSCP.log)"
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[6]$ ]]; then
@@ -129,6 +130,9 @@ EOF
             displayHelp
             echo
             read -rsp $'Press any key to continue...\n' -n1 key
+        fi
+        if [[ "$REPLY" =~ ^[7]$ ]]; then
+            exit
         fi
         else
             echo "Input Error. Please try again.."
