@@ -1,4 +1,5 @@
-#!/bin/bash  
+#!/bin/bash
+clear
 cat <<EOF
 
    ____        _      _     _____  _____ _____  
@@ -14,32 +15,50 @@ echo
 echo "Ensure SSH is open on connecting server"
 echo
 read -p "Please input the IP Address:  " ipInput
-read -p "Please input the username:  " usernameInput
 read -p "Please input the port:  " portInput
+read -p "Please input the username:  " usernameInput
 
+echo
+echo "Checking if SSH is open.."
+echo
+echo > /dev/tcp/$ipInput/$portInput
+if [ "$?" -ne 0 ]; then
+    echo
+    sleep $DELAY
+    clear
+    ./$(basename $0) && exit    
+else
+    echo "SSH is running!"
+    sleep $DELAY
+fi
 
 while [[ "$REPLY" != 0 ]]; do
-	clear
+    clear
+    echo "Target IP: $ipInput"
+    echo "Target Port: $portInput"
+    echo
 	cat <<EOF
 	Please select from the following options:
 
     1.) Copy a file to a remote system
     2.) Copy a file from a remote system
     3.) Change server data
+    4.) Remote into server 
 	
 EOF
   
-	read -p "Enter your selection [1-3]> "
-  
-	if [[ "$REPLY" =~ ^[1-3]$ ]]; then
+	read -p "Enter your selection [1-5]> "
+
+
+	if [[ "$REPLY" =~ ^[1-4]$ ]]; then
         if [[ "$REPLY" =~ ^[1]$ ]]; then
             echo "You have selected to copy a file to a remote system"
             echo
             read -p "Please input the path to file:  " filePath
             read -p "Please input the destination path:  " destinationPath
+            echo
             scp -P $portInput $filePath $usernameInput@$ipInput:$destinationPath
             echo
-            echo "Copy Successful"
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[2]$ ]]; then
@@ -47,14 +66,18 @@ EOF
             echo
             read -p "Please input the path to file:  " filePath
             read -p "Please input the destination path:  " destinationPath
+            echo
             scp -P $portInput $usernameInput@$ipInput:$filePath $destinationPath
             echo
-            echo "Copy Successful"
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[3]$ ]]; then
             clear
             ./$(basename $0) && exit
+        fi
+        if [[ "$REPLY" =~ ^[4]$ ]]; then
+            clear
+            ssh $usernameInput@$ipInput -p $portInput
         fi
         else
             echo "Input Error. Please try again.."
