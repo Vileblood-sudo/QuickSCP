@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 #######################
 # ./qscp.sh -h for help
 #######################
@@ -62,7 +61,6 @@ displayTarget () {
     echo "Target Port - $portInput"
 }
 
-whoami idVar
 while [[ "$REPLY" != 0 ]]; do
     clear
 	cat <<EOF
@@ -91,8 +89,9 @@ EOF
             read -p "Please input the path to file:  " filePath
             read -p "Please input the destination path:  " destinationPath
             echo
-            scp -P $portInput $filePath $usernameInput@$ipInput:$destinationPath >> /home/$idVar/QSCP.log
+            scp -P $portInput $filePath $usernameInput@$ipInput:$destinationPath >> ~/QSCP.log
             echo
+            echo "Output sent to home directory (QSCP.log)"
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[2]$ ]]; then
@@ -104,8 +103,9 @@ EOF
             read -p "Please input the path to file:" filePath
             read -p "Please input the destination path:  " destinationPath
             echo
-            scp -P $portInput $usernameInput@$ipInput:$filePath $destinationPath >> /home/$idVar/QSCP.log
+            scp -P $portInput $usernameInput@$ipInput:$filePath $destinationPath >> ~/QSCP.log
             echo
+            echo "Output sent to home directory (QSCP.log)"
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[3]$ ]]; then
@@ -122,6 +122,8 @@ EOF
             echo
             read -p "Please enter the command you wish to execute:  " cInput
             ssh $usernameInput@$ipInput -p $portInput $cInput >> ~/QSCPexecute.log
+            echo
+            echo "Output sent to home directory (QSCPexecute.log)"
             sleep $DELAY
         fi
         if [[ "$REPLY" =~ ^[6]$ ]]; then
